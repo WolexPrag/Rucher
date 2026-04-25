@@ -42,5 +42,8 @@ public class FsmStateSelection : FsmState
 
     private void OnSelected(Person model)
     {
+        var battle = _fsm.GetState<FsmStateBattle>();
+        battle.Init(model);
+        _fsm.SetState<FsmStateBattle>();
     }
 }
