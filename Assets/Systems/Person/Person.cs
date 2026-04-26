@@ -1,11 +1,8 @@
 ﻿public class Person
 {
-    public string Name { get; }
-    public Stats Stats { get; }
+    public string Name;
+    public string Role;
+    public int Age;
 
-    public Person(string name, Stats stats)
-    {
-        Name = name;
-        Stats = stats;
-    }
+    public Stats Stats;
 }

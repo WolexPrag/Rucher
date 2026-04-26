@@ -4,7 +4,7 @@ using VContainer;
 
 public class FsmStateSelection : FsmState
 {
-    [Inject] private CandidateGenerator _generator;
+    [Inject] private PersonGenerator _generator;
     [Inject] private SelectionView _view;
     private Person _hr;
 
@@ -15,6 +15,7 @@ public class FsmStateSelection : FsmState
 
     public override void Enter()
     {
+        if (_hr == null) Init(_generator.Generate("HR"));
         _view.Init();
         Refresh();
 
@@ -36,14 +37,14 @@ public class FsmStateSelection : FsmState
     }
     private void Refresh()
     {
-        var list = _generator.GenerateList();
+        var list = _generator.GenerateList("MMM master");
         _view.ShowCandidates(list);
     }
 
     private void OnSelected(Person model)
     {
         var battle = _fsm.GetState<FsmStateBattle>();
-        battle.Init(model);
+        battle.Init(_hr,model);
         _fsm.SetState<FsmStateBattle>();
     }
 }

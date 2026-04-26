@@ -18,7 +18,8 @@ public class GameSceneInstaller : LifetimeScope
         builder.RegisterComponentInHierarchy<RunnerView>();
 
         builder.Register<NameGenerator>(Lifetime.Singleton);
-        builder.RegisterComponentInHierarchy<CandidateGenerator>();
+        builder.Register<StatsGenerator>(Lifetime.Singleton);
+        builder.RegisterComponentInHierarchy<PersonGenerator>();
 
         builder.RegisterBuildCallback(resolver =>
         {
